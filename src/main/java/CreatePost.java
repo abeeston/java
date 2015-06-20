@@ -4,14 +4,9 @@
  * and open the template in the editor.
  */
 
-import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.Date;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -40,34 +35,28 @@ public class CreatePost extends HttpServlet {
 
         String filename = "discussion.txt";
 
-        // Gets the name, timestamp and content
+        // Gets the name
         String username = request.getParameter("username");
         
+        // Gets the time
         Date date = new Date();
         String time = date.toString();
         
-        time = "test date";////////////////////////////////////////////
-        
+        // Gets the content
         String content = request.getParameter("content");
-        
-        //String test = "testing Date!!"; ////////////////////////////
-        //request.getSession().setAttribute("username", username);
-        //request.getSession().setAttribute("test", test);
-        //request.getSession().setAttribute("content", content);
         
         // write to the file
         //String path = getServletContext().getRealPath("/") + filename;
         
         String dataDirectory = System.getenv("OPENSHIFT_DATA_DIR");
-        String path = dataDirectory + "\\discussion.txt";
+        String path = dataDirectory + "\\" + filename;
         
-        FileWriter fw = new FileWriter(path, true);
-        String text = username + ":" + /*time + ":" + */content + "\n";
-        fw.write(text);
+        BufferedWriter bw = new BufferedWriter(new FileWriter(path)); // , true?
+        String text = username + ":" + time + ":" + content + "\n";
+        bw.write(text);
         
         // forward the request
         request.getRequestDispatcher("LoadPosts").forward(request, response);//////////////////////////////////////
-        //request.getRequestDispatcher("ViewPosts.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

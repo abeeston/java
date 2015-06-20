@@ -50,7 +50,7 @@ public class LoadPosts extends HttpServlet {
                 while ((line = br.readLine()) != null) {
                     String sPost[] = line.split(":");
                     
-                    Post post = new Post (sPost[0],/* sPost[1]*/ "test", sPost[2]);
+                    Post post = new Post (sPost[0], sPost[1], sPost[2]);
                     list.add(post);
                 }
             }

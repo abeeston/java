@@ -12,7 +12,7 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h3>Error: The credentials for "${param.username}" were invalid</h3>
+        <h3>Error: The credentials for "${param.username}" were invalid </h3>
         <form action="index.html" method="GET">
             <input type="submit" value="Try Again"/>
         </form>
