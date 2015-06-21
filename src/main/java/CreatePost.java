@@ -49,7 +49,7 @@ public class CreatePost extends HttpServlet {
         //String path = getServletContext().getRealPath("/") + filename;
         
         String dataDirectory = System.getenv("OPENSHIFT_DATA_DIR");
-        String path = dataDirectory + "\\" + filename;
+        String path = dataDirectory + System.getenv("file.separator") + filename;
         
         BufferedWriter bw = new BufferedWriter(new FileWriter(path, true));
         String text = username + ":" + time + ":" + content + "\n";
