@@ -19,8 +19,9 @@
         <h1>Posts</h1>
         <div>
             <c:forEach var="post" items="${PostsList}">
-                <h5>${post.user} </h5>
-                ${post.date} <br/> ${post.content} <br/>
+                <h4>${post.user} </h4>
+                <h5>${post.date} </h5> 
+                <p> ${post.content} </p> <br/>
             </c:forEach>
         </div>
         <form action="enterNewPost.jsp" method="GET">

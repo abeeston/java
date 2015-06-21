@@ -51,12 +51,13 @@ public class CreatePost extends HttpServlet {
         String dataDirectory = System.getenv("OPENSHIFT_DATA_DIR");
         String path = dataDirectory + "\\" + filename;
         
-        BufferedWriter bw = new BufferedWriter(new FileWriter(path)); // , true?
+        BufferedWriter bw = new BufferedWriter(new FileWriter(path, true));
         String text = username + ":" + time + ":" + content + "\n";
         bw.write(text);
+        bw.close();
         
         // forward the request
-        request.getRequestDispatcher("LoadPosts").forward(request, response);//////////////////////////////////////
+        request.getRequestDispatcher("LoadPosts").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
