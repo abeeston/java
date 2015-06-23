@@ -1,2 +1,5 @@
-David Taylor:Sat Jun 20 23:01:45 MDT 2015:Testing another post
-Bob:Sat Jun 20 23:04:28 MDT 2015:I'm making a post!
+Amy Beeston;Mon Jun 22 17:20:19 MDT 2015;First Post!
+Trevor Williams;Mon Jun 22 17:22:08 MDT 2015;Second Post
+mickey_mouse552;Mon Jun 22 17:30:53 MDT 2015;what am I supposed to talk about?
+Hi;Mon Jun 22 20:54:19 MDT 2015;Hey
+T Dog;Mon Jun 22 20:59:31 MDT 2015;I am Trevor

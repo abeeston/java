@@ -9,6 +9,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.lang.Object;
+import java.util.Collections;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -40,21 +42,23 @@ public class LoadPosts extends HttpServlet {
             List<Post> list = new ArrayList<Post>();
             //String path = getServletContext().getRealPath("/") + filename;
 
-            String dataDirectory = System.getenv("OPENSHIFT_DATA_DIR");
-            String path = dataDirectory + System.getenv("file.separator") + "discussion.txt";
+            String dir = System.getenv("OPENSHIFT_DATA_DIR");
+            String path = dir + System.getenv("file.separator");
             
             FileReader fr = new FileReader(path);
 
             try (BufferedReader br = new BufferedReader(fr)) {
                 String line = null;
                 while ((line = br.readLine()) != null) {
-                    String sPost[] = line.split(":");
+                    String sPost[] = line.split(";");
                     
                     Post post = new Post (sPost[0], sPost[1], sPost[2]);
                     list.add(post);
                 }
             }
 
+            Collections.reverse(list);
+            
             request.setAttribute("PostsList", list);
             request.getRequestDispatcher("ViewPosts.jsp").forward(request, response);
             
