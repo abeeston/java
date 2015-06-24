@@ -38,25 +38,28 @@ public class LoadPosts extends HttpServlet {
             throws ServletException, IOException {
         try {
             String filename = "discussion.txt";
-
             List<Post> list = new ArrayList<Post>();
-            //String path = getServletContext().getRealPath("/") + filename;
 
-            String path = System.getenv("OPENSHIFT_DATA_DIR") + System.getenv("file.separator") + "discussion.txt"; /////////dir
-            //String path = dir + System.getenv("file.separator");
+            // Get the path
+            // String path = getServletContext().getRealPath("/") + filename;
+            String path = System.getenv("OPENSHIFT_DATA_DIR") + System.getenv("file.separator") + "discussion.txt";
             
+            // Read the file
             FileReader fr = new FileReader(path);
-
             try (BufferedReader br = new BufferedReader(fr)) {
                 String line = null;
                 while ((line = br.readLine()) != null) {
-                    String sPost[] = line.split(";");
                     
+                    // Split at ";" and create a post
+                    String sPost[] = line.split(";");
                     Post post = new Post (sPost[0], sPost[1], sPost[2]);
+
+                    // Add to the list of posts
                     list.add(post);
                 }
             }
 
+            // Reverse the list and send the list to the jsp
             Collections.reverse(list);
             
             request.setAttribute("PostsList", list);

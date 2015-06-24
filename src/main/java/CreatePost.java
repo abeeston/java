@@ -35,22 +35,16 @@ public class CreatePost extends HttpServlet {
 
         String filename = "discussion.txt";
 
-        // Gets the name
+        // Gets the name, date, and content
         String username = request.getParameter("username");
-        
-        // Gets the time
-        Date date = new Date();
-        String time = date.toString();
-        
-        // Gets the content
+        String time = new Date().toString();
         String content = request.getParameter("content");
         
-        // write to the file
-        //String path = getServletContext().getRealPath("/") + filename;
-        
-        String path = System.getenv("OPENSHIFT_DATA_DIR") + System.getenv("file.separator") + "discussion.txt"; ////////////dir
-        //String path = dir + System.getenv("file.separator"); // filename
-        
+        // Get the path
+        // String path = getServletContext().getRealPath("/") + filename;
+        String path = System.getenv("OPENSHIFT_DATA_DIR") + System.getenv("file.separator") + "discussion.txt";
+
+        // Write the data delimited by ";"
         BufferedWriter bw = new BufferedWriter(new FileWriter(path, true));
         String text = username + ";" + time + ";" + content + "\n";
         bw.write(text);
