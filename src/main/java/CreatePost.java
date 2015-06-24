@@ -45,7 +45,7 @@ public class CreatePost extends HttpServlet {
         String path = System.getenv("OPENSHIFT_DATA_DIR") + System.getenv("file.separator") + "discussion.txt";
 
         // Write the data delimited by ";"
-        BufferedWriter bw = new BufferedWriter(new FileWriter(path, true));
+        BufferedWriter bw = new BufferedWriter(new FileWriter(path, false));
         String text = username + ";" + time + ";" + content + "\n";
         bw.write(text);
         bw.close();
